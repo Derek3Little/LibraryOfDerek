@@ -37,4 +37,11 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name = "category_id")}) // foreign key for category, defined in Category class
     private Set<Category> categories = new HashSet<Category>();
 
+    // book can have multiple publishers, publisher can have multiple books
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "books_publishers", // name of table
+            joinColumns = {@JoinColumn(name = "book_id")}, // foreign key: book
+            inverseJoinColumns = {@JoinColumn(name = "publisher_id")}) // foreign key: publisher
+    private Set<Publisher> publishers = new HashSet<Publisher>();
+
 }
