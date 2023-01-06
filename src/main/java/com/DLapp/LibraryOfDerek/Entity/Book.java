@@ -50,6 +50,7 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name = "publisher_id")}) // foreign key: publisher
     private Set<Publisher> publishers = new HashSet<Publisher>();
 
+    // method enables cascade action associated with adding/removing associated entities
     public void removePublisher(Publisher publisher) {
         this.publishers.remove(publisher);
         publisher.getBooks().remove(publisher);
