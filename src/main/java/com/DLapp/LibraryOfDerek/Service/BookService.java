@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class BookService {
 
-    @Autowired
+    @Autowired // Spring autowire for repository data access
     private BookRepository bookRepository;
 
     public List<Book> findAllBooks() {
