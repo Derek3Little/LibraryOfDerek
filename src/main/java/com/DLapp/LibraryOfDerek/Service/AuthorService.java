@@ -33,5 +33,4 @@ public class AuthorService {
         Author author = findAuthorById(id); // first must successfully find the author to be deleted
         authorRepository.deleteById(author.getAuthorId()); // getAuthorId provided by lombok NICE!
     }
-
 }
