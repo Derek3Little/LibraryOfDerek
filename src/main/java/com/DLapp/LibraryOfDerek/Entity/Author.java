@@ -30,4 +30,9 @@ public class Author {
     @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
     private Set<Book> books = new HashSet<Book>();
 
+    // constructor for name and description
+    public Author(String name, String description) {
+        this.authorName = name;
+        this.authorDescription = description;
+    }
 }
