@@ -52,6 +52,7 @@ public class BookController {
     @GetMapping("/update-book/{id}")
     public String updateBook(@PathVariable Long id, Model model) {
         Book book = bookService.findBookById(id);
+        model.addAttribute("book", bookService.findAllBooks());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("authors", authorService.getAllAuthors());
