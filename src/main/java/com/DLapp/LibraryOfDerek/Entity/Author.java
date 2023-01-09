@@ -1,11 +1,9 @@
 package com.DLapp.LibraryOfDerek.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,21 +16,19 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long authorId; // long type to accommodate Derek's gigantic library
+    private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    private String authorName;
+    @Column(name = "name", length = 100, nullable = false, unique = true)
+    private String name;
 
-    @Column(name = "description", nullable = false)
-    private String authorDescription;
+    @Column(name = "description", length = 250, nullable = false)
+    private String description;
 
-    // book can have multiple authors, author can have multiple books
     @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
     private Set<Book> books = new HashSet<Book>();
 
-    // constructor for name and description
     public Author(String name, String description) {
-        this.authorName = name;
-        this.authorDescription = description;
+        this.name = name;
+        this.description = description;
     }
 }

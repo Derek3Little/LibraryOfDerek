@@ -1,11 +1,9 @@
 package com.DLapp.LibraryOfDerek.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,74 +16,68 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+    private Long id;
 
     @Column(name = "isbn", length = 50, nullable = false, unique = true)
-    private String bookIsbn;
+    private String isbn;
 
-    @Column(name = "title", nullable = false)
-    private String bookTitle;
+    @Column(name = "name", length = 50, nullable = false)
+    private String name;
 
-    @Column(name = "description", nullable = false, unique = true)
-    private String bookDescription;
+    @Column(name = "description", length = 250, nullable = false)
+    private String description;
 
-    // book can have multiple authors, author can have multiple books
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "books_authors", // name of table storing relationship between author and book
-            joinColumns = {@JoinColumn(name = "book_id")}, // join = foreign key of book, local!
-            inverseJoinColumns = {@JoinColumn(name = "author_id")}) // inverseJoin = foreign key of author, mapped!
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "books_authors",
+            joinColumns = {@JoinColumn(name = "book_id")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id")})
     private Set<Author> authors = new HashSet<Author>();
 
-    // book can have multiple categories, category can have multiple books
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "books_categories", // name of table storing relationship between category and book
-            joinColumns = {@JoinColumn(name = "book_id")}, // foreign key of book, defined here in Book class
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}) // foreign key for category, defined in Category class
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "books_categories",
+            joinColumns = {@JoinColumn(name = "book_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private Set<Category> categories = new HashSet<Category>();
 
-    // book can have multiple publishers, publisher can have multiple books
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "books_publishers", // name of table
-            joinColumns = {@JoinColumn(name = "book_id")}, // foreign key: book
-            inverseJoinColumns = {@JoinColumn(name = "publisher_id")}) // foreign key: publisher
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "books_publishers",
+            joinColumns = {@JoinColumn(name = "book_id")},
+            inverseJoinColumns = {@JoinColumn(name = "publisher_id")})
     private Set<Publisher> publishers = new HashSet<Publisher>();
 
-    // constructor for isbn, name, and description
-    public Book(String isbn, String title, String description) {
-        this.bookIsbn = isbn;
-        this.bookTitle = title;
-        this.bookDescription = description;
+    public Book(String isbn, String name, String description) {
+        this.isbn = isbn;
+        this.name = name;
+        this.description = description;
     }
 
-    // following methods enable cascade action associated with adding/removing associated entities
-    public void removePublisher(Publisher publisher) {
+    public void removePublisher(Publisher publisher){
         this.publishers.remove(publisher);
         publisher.getBooks().remove(publisher);
     }
 
-    public void addPublisher(Publisher publisher) {
+    public void addPublisher(Publisher publisher){
         this.publishers.add(publisher);
         publisher.getBooks().add(this);
     }
 
-    public void removeAuthor(Author author) {
+    public void removeAuthor(Author author){
         this.authors.remove(author);
         author.getBooks().remove(author);
     }
 
-    public void addAuthor(Author author) {
+    public void addAuthor(Author author){
         this.authors.add(author);
         author.getBooks().add(this);
     }
 
-    public void removeCategory(Category category) {
+    public void removeCategory(Category category){
         this.categories.remove(category);
         category.getBooks().remove(category);
     }
 
-    public void addCategory(Category category) {
+    public void addCategory(Category category){
         this.categories.add(category);
         category.getBooks().add(this);
     }
-
 }

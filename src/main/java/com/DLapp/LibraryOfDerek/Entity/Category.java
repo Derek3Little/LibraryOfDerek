@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,18 +16,15 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    private String categoryName;
+    @Column(name = "name", length = 50, nullable = false, unique = true)
+    private String name;
 
-    // book can have multiple category, category can have multiple books
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
     private Set<Book> books = new HashSet<Book>();
 
-    // constructor for name
     public Category(String name) {
-        this.categoryName = name;
+        this.name = name;
     }
-
 }
