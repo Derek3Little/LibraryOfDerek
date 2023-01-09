@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -22,27 +22,27 @@
                     <table class="table table-striped table-responsive-md">
                         <tr>
                             <td>ISBN</td>
-                            <td th:text="${book.bookIsbn}"></td>
+                            <td th:text="${book.isbn}"></td>
                         </tr>
                         <tr>
                             <td>Category</td>
-                            <td th:text="${book.categories[0].categoryName}"></td>
+                            <td th:text="${book.categories[0].name}"></td>
                         </tr>
                         <tr>
                             <td>Book name</td>
-                            <td th:text="${book.bookTitle}"></td>
+                            <td th:text="${book.name}"></td>
                         </tr>
                         <tr>
                             <td>Author name</td>
-                            <td th:text="${book.authors[0].authorName}"></td>
+                            <td th:text="${book.authors[0].name}"></td>
                         </tr>
                         <tr>
                             <td>Publisher name</td>
-                            <td th:text="${book.publishers[0].publisherName}"></td>
+                            <td th:text="${book.publishers[0].name}"></td>
                         </tr>
                         <tr>
                             <td>Book description</td>
-                            <td th:text="${book.bookDescription}"></td>
+                            <td th:text="${book.description}"></td>
                         </tr>
                     </table>
                 </div>
