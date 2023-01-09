@@ -38,14 +38,14 @@
                             </thead>
                             <tbody>
                             <tr th:each="books : ${books}">
-                                <td th:text="${books.isbn}"></td>
-                                <td th:text="${books.name}"></td>
-                                <td th:text="${books.description}"></td>
-                                <td><a th:href="@{/book/{id}(id=${books.id})}" class="btn btn-primary"><i
+                                <td th:text="${books.bookIsbn}"></td>
+                                <td th:text="${books.bookTitle}"></td>
+                                <td th:text="${books.bookDescription}"></td>
+                                <td><a th:href="@{/book/{id}(id=${books.bookId})}" class="btn btn-primary"><i
                                         class="fas fa-eye ml-2"></i></a></td>
-                                <td><a th:href="@{/update-book/{id}(id=${books.id})}" class="btn btn-primary"><i
+                                <td><a th:href="@{/update-book/{id}(id=${books.bookId})}" class="btn btn-primary"><i
                                         class="fas fa-edit ml-2"></i></a></td>
-                                <td><a th:href="@{/remove-book/{id}(id=${books.id})}" class="btn btn-primary"><i
+                                <td><a th:href="@{/remove-book/{id}(id=${books.bookId})}" class="btn btn-primary"><i
                                         class="fas fa-user-times ml-2"></i></a></td>
                             </tr>
                             </tbody>
