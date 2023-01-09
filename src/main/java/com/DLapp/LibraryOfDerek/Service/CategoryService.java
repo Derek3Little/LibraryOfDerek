@@ -33,6 +33,6 @@ public class CategoryService {
 
     public void deleteCategory(Long id) {
         Category category = findCategoryById(id); // find..
-        categoryRepository.deleteById(category.getCategoryId()); // ..then delete
+        categoryRepository.deleteById(category.getId()); // ..then delete
     }
 }

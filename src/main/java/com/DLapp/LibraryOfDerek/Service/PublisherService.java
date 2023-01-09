@@ -33,6 +33,6 @@ public class PublisherService {
 
     public void deletePublisher(Long id) {
         Publisher publisher = findPublisherById(id);
-        publisherRepository.deleteById(publisher.getPublisherId());
+        publisherRepository.deleteById(publisher.getId());
     }
 }

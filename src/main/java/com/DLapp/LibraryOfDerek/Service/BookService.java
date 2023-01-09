@@ -28,6 +28,6 @@ public class BookService {
 
     public void deleteBook(Long id) {
         Book book = findBookById(id); // book must first be found
-        bookRepository.deleteById(book.getBookId()); // getBookId getter provided by lombok!
+        bookRepository.deleteById(book.getId()); // getBookId getter provided by lombok!
     }
 }
