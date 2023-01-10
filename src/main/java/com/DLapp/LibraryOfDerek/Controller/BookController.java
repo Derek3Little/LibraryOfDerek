@@ -48,7 +48,7 @@ public class BookController {
     public String deleteBook(@PathVariable Long id, Model model) {
         bookService.deleteBook(id);
         model.addAttribute("books", bookService.findAllBooks());
-        return "books"; // returning the book list reflecting deleted book
+        return "redirect:/books"; // returning the book list reflecting deleted book
     }
 
     @GetMapping("/update-book/{id}")
