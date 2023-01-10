@@ -26,4 +26,10 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
+    @GetMapping("/update-category/{id}")
+    public String updateCategory(@PathVariable Long id, Model model) {
+        model.addAttribute("category", categoryService.findCategoryById(id));
+        return "update-category";
+    }
+
 }
