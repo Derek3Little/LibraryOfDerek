@@ -73,4 +73,12 @@ public class BookController {
 
         return "redirect:/books"; // 'redirect:' will send user to /books
     }
+
+    @PostMapping("/add-book")
+    public String addBook(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("publishers", publisherService.getAllPublishers());
+        model.addAttribute("authors", authorService.getAllAuthors());
+        return "add-book";
+    }
 }
