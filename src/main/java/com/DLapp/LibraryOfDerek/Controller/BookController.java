@@ -76,7 +76,7 @@ public class BookController {
     }
 
     @GetMapping("/add-book")
-    public String addBook(Model model) {
+    public String addBook(Book book, Model model) {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("authors", authorService.getAllAuthors());
