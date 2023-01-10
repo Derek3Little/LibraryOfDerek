@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.naming.Binding;
 import java.util.List;
 
 @Controller
@@ -74,11 +75,24 @@ public class BookController {
         return "redirect:/books"; // 'redirect:' will send user to /books
     }
 
-    @PostMapping("/add-book")
+    @GetMapping("/add-book")
     public String addBook(Model model) {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("authors", authorService.getAllAuthors());
         return "add-book";
+    }
+
+    @PostMapping("/save-book")
+    public String saveBook(Book book, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "add-book";
+        }
+
+        bookService.createBook(book);
+        model.addAttribute("books", bookService.findAllBooks());
+
+        return "redirect:/books";
     }
 }
