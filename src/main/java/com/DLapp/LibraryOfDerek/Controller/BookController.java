@@ -8,8 +8,10 @@ import com.DLapp.LibraryOfDerek.Service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -57,5 +59,18 @@ public class BookController {
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("authors", authorService.getAllAuthors());
         return "update-book";
+    }
+
+    @PostMapping("/save-update/{id}") // 'post' mapping for sending information to update!
+    public String updateBook(@PathVariable Long id, Book book, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "update-book";
+        }
+
+        bookService.updateBook(book);
+        model.addAttribute("book", bookService.findAllBooks());
+
+        return "redirect:/books"; // 'redirect:' will send user to /books
     }
 }
