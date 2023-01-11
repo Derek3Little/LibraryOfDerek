@@ -26,4 +26,10 @@ public class PublisherController {
         return "redirect:/publishers"; // redirect to put user back on publishers page vs remove-publisher/{id} page
     }
 
+    @GetMapping("/update-publisher/{id}")
+    public String updatePublisher(@PathVariable Long id, Model model) {
+        model.addAttribute("publisher", publisherService.findPublisherById(id));
+        return "update-publisher";
+    }
+
 }
