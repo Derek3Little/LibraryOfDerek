@@ -27,7 +27,6 @@ public class PublisherController {
     @GetMapping("/remove-publisher/{id}")
     public String deletePublisher(@PathVariable Long id, Model model) {
         publisherService.deletePublisher(id);
-        model.addAttribute("publishers", publisherService.getAllPublishers());
         return "redirect:/publishers"; // redirect to put user back on publishers page vs remove-publisher/{id} page
     }
 
@@ -45,7 +44,6 @@ public class PublisherController {
         }
 
         publisherService.updatePublisher(publisher);
-        model.addAttribute("publishers", publisherService.getAllPublishers());
 
         return "redirect:/publishers";
     }
@@ -63,7 +61,6 @@ public class PublisherController {
         }
 
         publisherService.createPublisher(publisher);
-        model.addAttribute("publishers", publisherService.getAllPublishers());
 
         return "redirect:/publishers";
     }
