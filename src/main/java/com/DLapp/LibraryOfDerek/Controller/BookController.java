@@ -46,7 +46,7 @@ public class BookController {
     }
 
     @GetMapping("remove-book/{id}")
-    public String deleteBook(@PathVariable Long id, Model model) {
+    public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
         return "redirect:/books"; // returning the book list reflecting deleted book
     }
@@ -62,7 +62,7 @@ public class BookController {
     }
 
     @PostMapping("/save-update/{id}") // 'post' mapping for sending information to update!
-    public String updateBook(@PathVariable Long id, Book book, BindingResult result, Model model) {
+    public String updateBook(@PathVariable Long id, Book book, BindingResult result) {
 
         if (result.hasErrors()) {
             return "update-book";
@@ -82,7 +82,7 @@ public class BookController {
     }
 
     @PostMapping("/save-book")
-    public String saveBook(Book book, BindingResult result, Model model) {
+    public String saveBook(Book book, BindingResult result) {
 
         if (result.hasErrors()) {
             return "add-book";
