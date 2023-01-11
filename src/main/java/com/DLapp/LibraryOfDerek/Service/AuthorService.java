@@ -29,6 +29,10 @@ public class AuthorService {
         authorRepository.save(author);
     }
 
+    public void updateAuthor(Author author) {
+        authorRepository.save(author);
+    }
+
     public void deleteAuthor(Long id) {
         Author author = findAuthorById(id); // first must successfully find the author to be deleted
         authorRepository.deleteById(author.getId()); // getAuthorId provided by lombok NICE!
