@@ -25,7 +25,7 @@ public class PublisherController {
     }
 
     @GetMapping("/remove-publisher/{id}")
-    public String deletePublisher(@PathVariable Long id, Model model) {
+    public String deletePublisher(@PathVariable Long id) {
         publisherService.deletePublisher(id);
         return "redirect:/publishers"; // redirect to put user back on publishers page vs remove-publisher/{id} page
     }
@@ -37,7 +37,7 @@ public class PublisherController {
     }
 
     @PostMapping("/update-publisher/{id}")
-    public String saveUpdatePublisher(@PathVariable Long id, Publisher publisher, BindingResult result, Model model) {
+    public String saveUpdatePublisher(@PathVariable Long id, Publisher publisher, BindingResult result) {
 
         if (result.hasErrors()) {
             return "update-publisher";
@@ -54,7 +54,7 @@ public class PublisherController {
     }
 
     @PostMapping("/save-publisher")
-    public String createPublisher(Publisher publisher, BindingResult result, Model model) {
+    public String createPublisher(Publisher publisher, BindingResult result) {
 
         if (result.hasErrors()) {
             return "add-publisher";
