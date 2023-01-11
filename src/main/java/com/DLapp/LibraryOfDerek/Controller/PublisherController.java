@@ -48,4 +48,9 @@ public class PublisherController {
         return "redirect:/publishers";
     }
 
+    @GetMapping("/add-publisher") // corresponds to name of html file: add-publisher.html
+    public String showCreatePublisher(Publisher publisher) {
+        return "add-publisher";
+    }
+
 }
