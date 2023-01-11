@@ -23,9 +23,8 @@ public class AuthorController {
     }
 
     @GetMapping("/remove-author/{id}")
-    public String removeAuthor(@PathVariable Long id, Model model) {
+    public String removeAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id); // delete the author by id
-        model.addAttribute("authors", authorService.getAllAuthors()); // repopulate authors
         return "redirect:/authors"; // redirect to get user off remove-author page
     }
 
@@ -36,7 +35,7 @@ public class AuthorController {
     }
 
     @PostMapping("/update-author/{id}")
-    public String saveUpdateAuthor(@PathVariable Long id, Author author, BindingResult result, Model model) {
+    public String saveUpdateAuthor(@PathVariable Long id, Author author, BindingResult result) {
 
         if (result.hasErrors()) {
             return "update-author";
