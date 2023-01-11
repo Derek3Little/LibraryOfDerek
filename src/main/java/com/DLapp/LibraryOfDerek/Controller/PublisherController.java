@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.naming.Binding;
+
 @Controller
 public class PublisherController {
 
@@ -51,6 +53,19 @@ public class PublisherController {
     @GetMapping("/add-publisher") // corresponds to name of html file: add-publisher.html
     public String showCreatePublisher(Publisher publisher) {
         return "add-publisher";
+    }
+
+    @PostMapping("/save-publisher")
+    public String createPublisher(Publisher publisher, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "add-publisher";
+        }
+
+        publisherService.createPublisher(publisher);
+        model.addAttribute("publishers", publisherService.getAllPublishers());
+
+        return "redirect:/publishers";
     }
 
 }
