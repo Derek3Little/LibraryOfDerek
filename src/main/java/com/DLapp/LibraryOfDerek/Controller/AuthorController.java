@@ -43,8 +43,24 @@ public class AuthorController {
         }
 
         authorService.updateAuthor(author); // save update
-        // model.addAttribute("authors", authorService.getAllAuthors()); SUPERFLUOUS WITH REDIRECT
 
         return "redirect:/authors"; // redirect off of update-author page, back to authors
+    }
+
+    @GetMapping("/add-author")
+    public String showCreateAuthor(Author author) {
+        return "add-author";
+    }
+
+    @PostMapping("/save-author")
+    public String saveCreateAuthor(Author author, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "add-author";
+        }
+
+        authorService.createAuthor(author);
+
+        return "redirect:/authors";
     }
 }
