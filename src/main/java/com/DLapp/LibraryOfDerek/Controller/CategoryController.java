@@ -48,4 +48,9 @@ public class CategoryController {
         return "redirect:/categories"; // after update, return to categories page
     }
 
+    @GetMapping("/add-category")
+    public String showCreateCategory(Category category, Model model) {
+        return "redirect:/add-category";
+    }
+
 }
