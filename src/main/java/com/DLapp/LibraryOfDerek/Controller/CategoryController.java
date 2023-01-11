@@ -50,7 +50,7 @@ public class CategoryController {
 
     @GetMapping("/add-category")
     public String showCreateCategory(Category category) {
-        return "redirect:/add-category";
+        return "/add-category";
     }
 
     @PostMapping("/save-category")
