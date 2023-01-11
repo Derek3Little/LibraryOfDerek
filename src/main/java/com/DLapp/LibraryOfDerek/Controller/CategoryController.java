@@ -23,7 +23,7 @@ public class CategoryController {
     }
 
     @GetMapping("/remove-category/{id}")
-    public String deleteCategory(@PathVariable Long id, Model model) {
+    public String deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
         return "redirect:/categories";
     }
@@ -35,7 +35,7 @@ public class CategoryController {
     }
 
     @PostMapping("/update-category/{id}")
-    public String saveCategory(@PathVariable Long id, Category category, BindingResult result, Model model) {
+    public String saveCategory(@PathVariable Long id, Category category, BindingResult result) {
 
         if (result.hasErrors()) {
             return "update-category";
@@ -52,7 +52,7 @@ public class CategoryController {
     }
 
     @PostMapping("/save-category")
-    public String saveCategory(Category category, BindingResult result, Model model) {
+    public String saveCategory(Category category, BindingResult result) {
 
         if (result.hasErrors()) {
             return "add-category";
