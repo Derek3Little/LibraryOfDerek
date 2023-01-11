@@ -25,7 +25,6 @@ public class CategoryController {
     @GetMapping("/remove-category/{id}")
     public String deleteCategory(@PathVariable Long id, Model model) {
         categoryService.deleteCategory(id);
-        model.addAttribute("categories", categoryService.getAllCategories());
         return "redirect:/categories";
     }
 
@@ -43,7 +42,6 @@ public class CategoryController {
         }
 
         categoryService.updateCategory(category);
-        model.addAttribute("categories", categoryService.getAllCategories());
 
         return "redirect:/categories"; // after update, return to categories page
     }
@@ -61,7 +59,6 @@ public class CategoryController {
         }
 
         categoryService.createCategory(category);
-        model.addAttribute("categories", categoryService.getAllCategories());
 
         return "redirect:/categories";
     }
